@@ -1,0 +1,10 @@
+*.pyc
+*.out
+*.8
+*.o
+*.hi
+a.out
+*.swp
+*.pro.user
+*.class
+.DS_Store
