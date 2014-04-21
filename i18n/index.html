@@ -13,12 +13,16 @@
     <script type="text/javascript">
       // doc at http://i18next.com/pages/doc_init.html
       $(document).ready(function() {
-        i18n.init(function(t) {
-          // translate nav
-          $("body").i18n();
-
-          // programatical access
-          appName = t("app.name");
+        i18n.init(
+          { 
+            detectLngQS: 'lang',  // ?lang=en-US
+            fallbackLng: 'en'     // for production
+          }, 
+          function(t) {
+            $("body").i18n();
+            // programatical access
+            var appName = t("app.name");
+            console.log(appName);
         });
       });
     </script>
