@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.0/jquery.min.js" ></script>
+    <script type="text/javascript" src="i18next-1.7.3.min.js" ></script>
+  </head>
+  <body>
+    <ul class="nav">
+      <li><a href="#" data-i18n="nav.home"></a></li>
+      <li><a href="#" data-i18n="nav.page1"></a></li>
+      <li><a href="#" data-i18n="nav.page2"></a></li>
+    </ul>
+    <script type="text/javascript">
+      // doc at http://i18next.com/pages/doc_init.html
+      $(document).ready(function() {
+        i18n.init(
+          { 
+            detectLngQS: 'lang',  // ?lang=en-US
+            fallbackLng: 'en'     // for production
+          }, 
+          function(t) {
+            $("body").i18n();
+            // programatical access
+            var appName = t("app.name");
+            console.log(appName);
+        });
+      });
+    </script>
+  </body>
+</html>
