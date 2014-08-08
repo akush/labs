@@ -1,11 +1,11 @@
-var executing = "mixin";
+var executing = "mixin2";
 
 /*
  *  Object create
  */
-(function (toExecute) {
+(function (isExecuting) {
     'use strict';
-    if (!toExecute) return;
+    if (!isExecuting) return;
 
     var johnDoe = {
         firstName: "John",
@@ -41,9 +41,9 @@ var executing = "mixin";
 /*
  *  Inheritance Pattern
  */
-(function (toExecute) {
+(function (isExecuting) {
     'use strict';
-    if (!toExecute) return;
+    if (!isExecuting) return;
 
     function Beverage(name, temperature) {
         this.name = name;
@@ -70,9 +70,9 @@ var executing = "mixin";
 /*
  *  Mixin
  */
-(function (toExecute) {
+(function (isExecuting) {
     'use strict';
-    if (!toExecute) return;
+    if (!isExecuting) return;
 
     function extend(target) {
         if (!arguments[1])
@@ -107,3 +107,61 @@ var executing = "mixin";
     console.log(john.speak());
     console.log(john.move());
 })(executing === 'mixin');
+
+/*
+ *  Mixin 2
+ */
+(function (isExecuting) {
+    'use strict';
+    if (!isExecuting) return;
+
+    function mixin(target, source, methods) {
+        for (var ii = 2, ll = arguments.length; ii < ll; ii++) {
+            var method = arguments[ii];
+            target[method] = source[method].bind(source);
+        }
+    }
+
+})(executing === 'mixin2');
+
+/*
+ *  Decorator
+ */
+(function (isExecuting) {
+    'use strict';
+    if (!isExecuting) return;
+
+    function Beverage() {
+        this._cost = 0;
+    }
+    Beverage.prototype.cost = function () {
+        return this._cost;
+    }
+
+    function BeverageDecorator(beverage) {
+        Beverage.call(this);
+        this.beverage = beverage;
+    }
+    BeverageDecorator.prototype = Object.create(Beverage.prototype);
+    BeverageDecorator.prototype.cost = function () {
+        return this._cost + this.beverage.cost();
+    }
+
+    function Small(beverage) {
+        BeverageDecorator.call(this, beverage);
+        this._cost = -1;
+    }
+    Small.prototype = Object.create(BeverageDecorator.prototype);
+
+    function Coffee() {
+        Beverage.call(this);
+        this._cost = 5;
+    }
+    Coffee.prototype = Object.create(Beverage.prototype);
+
+    var coffee = new Coffee();
+    coffee = new Small(coffee);
+    console.log(coffee.cost());
+})(executing === 'decorator');
+
+
