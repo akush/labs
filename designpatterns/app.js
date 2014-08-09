@@ -1,4 +1,61 @@
-var executing = "mixin2";
+var executing = "factory";
+
+/*
+ * Module Pattern
+ */
+
+(function (isExecuting) {
+    'use strict';
+    if (!isExecuting) return;
+
+    var dom = (function () {
+        var _counter = 0;
+        return {
+            generateId: function () {
+                return "customId" + _counter++;
+            },
+            create: function (tagName, id) {
+                var el = document.createElement(tagName);
+                el.id = id || this.generateId();
+                return el;
+            }
+        }
+    }());
+    var el = dom.create('div');
+    var el1 = dom.create('div');
+    console.log(el.id, el1.id);
+})('module' === executing);
+
+/*
+ * AMD format
+ */
+
+(function (isExecuting) {
+    'use strict';
+    if (!isExecuting) return;
+
+    require(['dom_module'], function (dom) {
+        var el = dom.create('div');
+        var el1 = dom.create('div');
+        console.log(el.id, el1.id);
+    });
+})('amd' === executing);
+
+/*
+ * Factory
+ */
+
+(function (isExecuting) {
+    'use strict';
+    if (!isExecuting) return;
+
+    require(['dom_factory_module'], function (controls) {
+        var el = controls.create({type: 'text'});
+        var el1 = controls.create({type: 'checkbox'});
+        document.body.appendChild(el);
+        document.body.appendChild(el1);
+    });
+})('factory' === executing);
 
 /*
  *  Object create
@@ -163,5 +220,3 @@ var executing = "mixin2";
     coffee = new Small(coffee);
     console.log(coffee.cost());
 })(executing === 'decorator');
-
-
