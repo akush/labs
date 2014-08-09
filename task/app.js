@@ -11,7 +11,7 @@ require(['dom_module'], function (dom) {
             that.add(new Task(that));
         }
         this.deleteBtn = this.element.getElementsByClassName('btn-danger')[0];
-        this.deleteBtn.onclick = function(){
+        this.deleteBtn.onclick = function () {
             that.hide(that.element);
         }
     }
@@ -20,7 +20,7 @@ require(['dom_module'], function (dom) {
             this.children.push(child);
             this.element.appendChild(child.getElement());
         },
-        hide:function(el){
+        hide: function (el) {
             el.style.display = "none";
         },
         getElement: function () {
@@ -33,22 +33,22 @@ require(['dom_module'], function (dom) {
         this.list = list;
         this.element = dom.createTask(title, desc);
         this.toggleBtn = this.element.getElementsByTagName('input')[0];
-        this.toggleBtn.onclick = function(){
+        this.toggleBtn.onclick = function () {
             that.toggleDone(that.element);
         }
         this.deleteBtn = this.element.getElementsByTagName('a')[0];
-        this.deleteBtn.onclick = function(){
+        this.deleteBtn.onclick = function () {
             that.hide(that.element);
         }
     }
 
     Task.prototype = {
-        hide: function(el){
+        hide: function (el) {
             el.style.display = "none";
         },
-        toggleDone: function(el){
+        toggleDone: function (el) {
             var list = el.classList;
-            if(list.contains("done"))
+            if (list.contains("done"))
                 list.remove("done");
             else
                 list.add("done");

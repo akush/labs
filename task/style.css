@@ -30,14 +30,14 @@ textarea {
 }
 .list .title input {
     color: white;
-    width: 65%;
+    width: 50%;
 }
 .list .title input:hover,
 .list .title input:focus {
     background: white;
     color: #333;
 }
-.col-lg-11 > div {
+.item-values > div {
     width: 100%;
 }
 .list .item {
@@ -50,12 +50,12 @@ textarea {
 .list .item .item-title {
     font-size: 1.2em;
 }
-.list .item input,
-.list .item textarea {
+.list .item-values input,
+.list .item-values textarea {
     border-radius: 3px;
     width: 100%;
-    border: 1px solid #efefef;
     margin-top: 2px;
+    border: 1px solid #efefef;
 }
 .list .item input:hover,
 .list .item textarea:hover {

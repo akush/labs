@@ -11,10 +11,10 @@ define(function () {
         return el;
     }
 
-    function createList(title, id) {
+    function createList(title) {
         var el = this.create("div");
         var title = title || '';
-        el.className = "col-lg-4 list well well-sm";
+        el.className = "col-lg-5 list well well-sm";
         el.innerHTML =
             '<a href="#" class="btn btn-sm btn-danger pull-right" title="delete list"><span class="glyphicon glyphicon-trash"></span></a>\
             <a href="#" class="btn btn-sm btn-primary pull-right" title="add task"><span class="glyphicon glyphicon-plus"></span></a>\
