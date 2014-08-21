@@ -1,3 +1,11 @@
+// xhr_module, v1.1
+// Copyright (c)2014 Abhinav Kushwaha (akush).
+// Distributed under MIT license
+
+// For IE use:
+// <script src="http://rsvpjs-builds.s3.amazonaws.com/rsvp-latest.min.js"></script>
+// <script>var Promise = RSVP.Promise;</script>
+
 define(function () {
     var customHeaders = {};
 
@@ -9,7 +17,7 @@ define(function () {
         delete customHeaders[key];
     }
 
-    function request(method, url) {
+    function request(method, url, data) {
         return new Promise(function (resolve, reject) {
             var req = new XMLHttpRequest();
             req.open(method, url);
@@ -35,20 +43,20 @@ define(function () {
         return request('GET', url);
     }
 
-    function post(url) {
-        return request('POST', url);
+    function post(url, data) {
+        return request('POST', url, data);
     }
 
     function getJSON(url) {
         return get(url).then(JSON.parse);
     }
 
-    function postJSON(url) {
-        return post(url).then(JSON.parse);
+    function postJSON(url, data) {
+        return post(url, data).then(JSON.parse);
     }
 
-    function requestJSON(method, url) {
-        return request(method, url).then(JSON.parse);
+    function requestJSON(method, url, data) {
+        return request(method, url, data).then(JSON.parse);
     }
 
     return {
