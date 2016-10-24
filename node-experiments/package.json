@@ -1,0 +1,14 @@
+{
+  "name": "node-experiments",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "pug": "^2.0.0-beta6"
+  }
+}
